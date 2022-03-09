@@ -1,2 +1,5 @@
 # Alicia Kirkland Code Library
-collection of reusable resources 
+
+### Cloudformation
+
+- YAML template for generic stack w EC2 instance in an autoscaling group 
