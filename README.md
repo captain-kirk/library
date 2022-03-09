@@ -6,7 +6,7 @@
 
 ### CDK w Go
 
-- generic_ash.go: generic cdk code for stack with autoscaling group
+- generic_asg.go: generic cdk code for stack with autoscaling group
 
 
 ### Github Actions
