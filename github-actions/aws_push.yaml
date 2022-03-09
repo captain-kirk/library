@@ -39,7 +39,7 @@ jobs:
           aws-region: <region>
           role-to-assume: arn:aws:iam::<account_number>:role/<role_name>
       
-      - name: Deploy
+      - name: Run AWS Command
         run: |
           aws s3 ls 
 
