@@ -8,3 +8,7 @@
 
 - generic_ash.go: generic cdk code for stack with autoscaling group
 
+
+### Github Actions
+
+- aws_push.yaml: run an aws command on push 
