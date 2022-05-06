@@ -1,0 +1,44 @@
+name: Validate and Deploy Terraform
+
+on:
+  push:
+    branches:
+      - main    
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@e21f7333e801ca751f058cc52de17f0ee6e1da6f
+        with:
+          role-to-assume: <aws_iam_role_arn>
+          aws-region: us-east-1
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get install terraform
+      - name: Validate 
+        id: validate
+        run: |
+          cd terraform
+          terraform init -backend-config=bucket=<aws_s3_bucket_name>
+          terraform workspace new <terraform_workspace_name> || terraform workspace select <terraform_workspace_name>
+          terraform fmt
+          terraform plan -var-file=vars.tfvars
+      - name: Deploy
+        id: deploy
+        run: |
+          cd terraform
+          terraform apply -var-file=vars.tfvars -auto-approve
