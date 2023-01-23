@@ -1,4 +1,4 @@
-# Alicia Kirkland Code Library
+# Code Library
 
 ### Delve
 - How to use delve
