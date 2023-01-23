@@ -1,0 +1,94 @@
+{
+  "version": "29.0.0",
+  "artifacts": {
+    "simple-server.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "simple-server.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "simple-server": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://337674431841/us-east-1",
+      "properties": {
+        "templateFile": "simple-server.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::337674431841:role/cdk-hnb659fds-deploy-role-337674431841-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::337674431841:role/cdk-hnb659fds-cfn-exec-role-337674431841-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-337674431841-us-east-1/0228e4547e9c02a5867f5df3a00340b3cd87b09705962454affe0f19de8da4f9.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "simple-server.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::337674431841:role/cdk-hnb659fds-lookup-role-337674431841-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "simple-server.assets"
+      ],
+      "metadata": {
+        "/simple-server/simple-server-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simpleserverroleA500B068"
+          }
+        ],
+        "/simple-server/simple-server/InstanceSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simpleserverInstanceSecurityGroup75834D53"
+          }
+        ],
+        "/simple-server/simple-server/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simpleserverInstanceProfileAB6DE365"
+          }
+        ],
+        "/simple-server/simple-server/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simpleserverE6B7F5A8"
+          }
+        ],
+        "/simple-server/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/simple-server/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/simple-server/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/simple-server/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "simple-server"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
